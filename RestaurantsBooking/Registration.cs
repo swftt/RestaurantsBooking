@@ -18,7 +18,8 @@ namespace RestaurantsBooking
     public partial class Registration : MetroForm
     {
         public User User { get; set; } = new User();
-        public List<User> Users { get; set; } = new List<User>();
+        public List<UsersData> UsersDatas { get; set; } = new List<UsersData>();
+
         public Registration()
         {
             InitializeComponent();
@@ -100,32 +101,30 @@ namespace RestaurantsBooking
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            if (File.Exists(@"C:\Users\Dell\source\repos\RestaurantsBooking\RestaurantsBooking\bin\Debug\Users.xml"))
+           
+            if (File.Exists(@"C:\Users\Dell\source\repos\RestaurantsBooking\RestaurantsBooking\bin\Debug\UsersData.xml"))
             {
-                XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
-                using (FileStream fs = new FileStream("Users.xml", FileMode.Open))
+                XmlSerializer formatter = new XmlSerializer(typeof(List<UsersData>));
+                using (FileStream fs = new FileStream("UsersData.xml", FileMode.Open))
                 {
-                    Users = formatter.Deserialize(fs) as List<User>;
+                    UsersDatas = formatter.Deserialize(fs) as List<UsersData>;
                 }
-                Users.Add(User);
-                using (FileStream fs = new FileStream("Users.xml", FileMode.Create))
+                UsersDatas.Add(new UsersData { User = this.User });
+                using (FileStream fs = new FileStream("UsersData.xml", FileMode.Create))
                 {
-                    formatter.Serialize(fs, Users);
+                    formatter.Serialize(fs, UsersDatas);
                 }
             }
             else
             {
-                XmlSerializer formatter = new XmlSerializer(typeof(List<User>));
-                Users.Add(User);
-                using (FileStream fs = new FileStream("Users.xml", FileMode.Create))
+                XmlSerializer formatter = new XmlSerializer(typeof(List<UsersData>));
+                UsersDatas.Add(new UsersData { User = this.User });
+                using (FileStream fs = new FileStream("UsersData.xml", FileMode.Create))
                 {
-                    formatter.Serialize(fs, Users);
+                    formatter.Serialize(fs, UsersDatas);
                 }
             }
             ActiveForm.Close();
-                
-
-            
         }
     }
 }

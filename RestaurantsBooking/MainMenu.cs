@@ -13,6 +13,8 @@ namespace RestaurantsBooking
 {
     public partial class MainMenu : MetroForm
     {
+        public List<BookedTables> TablesBooked { get; set; } = new List<BookedTables>();
+        public List<BookedTables> TablesBookedByUser { get; set; } = new List<BookedTables>();
         public User CurrentUser { get; set; } = new User();
         public MainMenu()
         {
@@ -22,6 +24,11 @@ namespace RestaurantsBooking
         {
             CurrentUser = loggedUser;
             InitializeComponent();
+        }
+
+        private void metroButton2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
