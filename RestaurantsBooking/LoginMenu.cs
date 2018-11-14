@@ -58,9 +58,71 @@ namespace RestaurantsBooking
                     }
                     if (count > 0)
                     {
-                        var mainMenu = new MainMenu(LoggedUser);
-                        mainMenu.ShowDialog(this);
-                        UsersData.Clear();
+                        if (!File.Exists(@"C:\Users\Dell\source\repos\RestaurantsBooking\RestaurantsBooking\bin\Debug\TablesBooked.xml"))
+                        {
+                            List<Restaurant> bookedTables = new List<Restaurant>
+                            {
+                                {new Restaurant
+                                    {
+                                    Title ="Fortissimo",
+                                    AreTablesBooked =new bool[10]
+                                     {
+                                        false,false,false,false,false,false,false,false,false,false}
+                                    }
+
+                                },
+                                {
+                                    new Restaurant
+                                    {
+                                        Title="Bazikalo",
+                                        AreTablesBooked=new bool[12]
+                                        {
+                                             false,false,false,false,false,false,false,false,false,false,false,false
+                                        }
+                                    }
+                                },
+                                {  new Restaurant
+                                    {
+                                        Title="Le Chalot",
+                                        AreTablesBooked=new bool[10]
+                                        {
+                                             false,false,false,false,false,false,false,false,false,false
+                                        }
+                                    }
+                                },
+                                 {  new Restaurant
+                                    {
+                                        Title="Catarsys",
+                                        AreTablesBooked=new bool[15]
+                                        {
+                                        false,false,false,false,false,false,false,false,
+                                            false,false,false,false,false,false,false
+                                        }
+                                    }
+                                }
+                            };
+                            XmlSerializer xml = new XmlSerializer(typeof(List<Restaurant>));
+                            using (FileStream fs = new FileStream("TablesBooked.xml", FileMode.Create))
+                            {
+                                xml.Serialize(fs, bookedTables);
+                            }
+                            var mainMenu = new MainMenu(LoggedUser, bookedTables);
+                            mainMenu.ShowDialog(this);
+                            UsersData.Clear();
+                        }
+                        else
+                        {
+                            List<Restaurant> bookedTables = new List<Restaurant>();
+                            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Restaurant>));
+                            using (FileStream fs = new FileStream("TablesBooked.xml", FileMode.Open))
+                            {
+                                bookedTables = xmlSerializer.Deserialize(fs) as List<Restaurant>;
+                            }
+                            var mainMenu = new MainMenu(LoggedUser,bookedTables);
+                            mainMenu.ShowDialog(this);
+                            UsersData.Clear();
+                        }
+
                     }
                     else
                     {

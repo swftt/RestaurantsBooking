@@ -7,7 +7,6 @@ namespace RestaurantsBooking
     {
         
         public string Title { get; set; }
-        public int PlacesLeft { get; set; }
         public bool[] AreTablesBooked { get; set; }
     }
 }

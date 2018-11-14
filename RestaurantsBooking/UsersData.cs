@@ -9,7 +9,7 @@ namespace RestaurantsBooking
     [Serializable]
     public  class UsersData
     {
-        public List<BookedTables> TablesBooked { get; set; } = new List<BookedTables>();
+        public List<Restaurant> TablesBooked { get; set; } = new List<Restaurant>();
         public User User { get; set; } = new User();
     }
 }

@@ -13,22 +13,30 @@ namespace RestaurantsBooking
 {
     public partial class MainMenu : MetroForm
     {
-        public List<BookedTables> TablesBooked { get; set; } = new List<BookedTables>();
-        public List<BookedTables> TablesBookedByUser { get; set; } = new List<BookedTables>();
+        public List<Restaurant> TablesBooked { get; set; } = new List<Restaurant>();
         public User CurrentUser { get; set; } = new User();
         public MainMenu()
         {
             InitializeComponent();
         }
-        public MainMenu(User loggedUser)
+        public MainMenu(User loggedUser,List<Restaurant> bookedTables)
         {
             CurrentUser = loggedUser;
+            TablesBooked = bookedTables;
             InitializeComponent();
         }
 
         private void metroButton2_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void metroButton1_Click(object sender, EventArgs e)
+        {
+            foreach (var user in TablesBooked)
+            {
+               
+            }
         }
     }
 }

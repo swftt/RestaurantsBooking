@@ -55,7 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookedTables.cs" />
     <Compile Include="BookTables.cs">
       <SubType>Form</SubType>
     </Compile>
