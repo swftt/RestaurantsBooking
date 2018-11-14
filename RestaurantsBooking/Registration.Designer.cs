@@ -252,6 +252,7 @@
             this.metroButton1.Text = "Register";
             this.metroButton1.UseSelectable = true;
             this.metroButton1.Click += new System.EventHandler(this.metroButton1_Click);
+            this.metroButton1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.metroButton1_KeyDown);
             // 
             // Registration
             // 
@@ -269,10 +270,12 @@
             this.Controls.Add(this.metroLabel3);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.metroLabel1);
+            this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(440, 550);
             this.MinimumSize = new System.Drawing.Size(440, 550);
             this.Name = "Registration";
             this.Text = "Registration";
+            this.Load += new System.EventHandler(this.Registration_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

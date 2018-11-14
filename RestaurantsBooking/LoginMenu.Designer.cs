@@ -148,12 +148,14 @@
             this.Controls.Add(this.metroTextBox1);
             this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.metroLabel1);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(400, 250);
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(400, 250);
             this.Name = "LoginMenu";
             this.Text = "Login Window";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LoginMenu_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

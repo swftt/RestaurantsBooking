@@ -63,10 +63,12 @@
             this.ClientSize = new System.Drawing.Size(800, 480);
             this.Controls.Add(this.metroButton2);
             this.Controls.Add(this.metroButton1);
+            this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(800, 480);
             this.MinimumSize = new System.Drawing.Size(640, 320);
             this.Name = "MainMenu";
             this.Text = "MainMenu";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainMenu_KeyDown);
             this.ResumeLayout(false);
 
         }

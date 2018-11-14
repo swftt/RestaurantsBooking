@@ -139,5 +139,14 @@ namespace RestaurantsBooking
                 MessageBox.Show("You have to write login or password");
             }
         }
+
+        private void LoginMenu_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F6)
+            {
+                Help webInfo = new Help();
+                webInfo.ShowDialog();
+            }
+        }
     }
 }

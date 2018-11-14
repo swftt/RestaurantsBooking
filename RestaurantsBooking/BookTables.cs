@@ -17,5 +17,14 @@ namespace RestaurantsBooking
         {
             InitializeComponent();
         }
+
+        private void BookTables_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F6)
+            {
+                Help webInfo = new Help();
+                webInfo.ShowDialog();
+            }
+        }
     }
 }

@@ -28,11 +28,13 @@ namespace RestaurantsBooking
 
         private void metroButton2_Click(object sender, EventArgs e)
         {
-
+            var bookingMap = new BookingMap(CurrentUser, TablesBooked);
+            bookingMap.ShowDialog(this);
         }
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
+            int counter = 0;
             string bookedInfoStr = String.Empty;
             if (CurrentUser.TablesBooked.Count != 0)
             {
@@ -41,9 +43,12 @@ namespace RestaurantsBooking
                     bookedInfoStr += "Restaurant: " + booked.Title;
                     foreach (var item in booked.AreTablesBooked)
                     {
+                        counter++;
                         if(item)
                         {
-                            bookedInfoStr += "Table №" + booked.AreTablesBooked.ToList().IndexOf(item)+1;
+                            bookedInfoStr += "  Table №" + counter+"\n";
+                            counter = 0;
+                            break;
                         }
                     }
                 }
@@ -52,6 +57,15 @@ namespace RestaurantsBooking
             else
             {
                 MessageBox.Show("You have no booked tables");
+            }
+        }
+
+        private void MainMenu_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F6)
+            {
+                Help webInfo = new Help();
+                webInfo.ShowDialog();
             }
         }
     }

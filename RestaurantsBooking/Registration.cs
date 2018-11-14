@@ -126,5 +126,19 @@ namespace RestaurantsBooking
             }
             ActiveForm.Close();
         }
+
+        private void metroButton1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F10)
+            {
+                Help webInfo = new Help();
+                webInfo.ShowDialog();
+            }
+        }
+
+        private void Registration_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
