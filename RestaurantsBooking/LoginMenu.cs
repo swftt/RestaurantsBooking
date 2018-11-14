@@ -10,7 +10,6 @@ namespace RestaurantsBooking
     public partial class LoginMenu : MetroForm
     {
         public List<UsersData> UsersData { get; set; } = new List<UsersData>();
-        public User LoggedUser { get; set; } = new User();
         public LoginMenu()
         {
             InitializeComponent();
@@ -43,6 +42,7 @@ namespace RestaurantsBooking
             {
                 if (File.Exists(@"C:\Users\Dell\source\repos\RestaurantsBooking\RestaurantsBooking\bin\Debug\UsersData.xml"))
                 {
+                    UsersData DataOfUser = new UsersData();
                     XmlSerializer formatter = new XmlSerializer(typeof(List<UsersData>));
                     using (FileStream fs = new FileStream("UsersData.xml", FileMode.Open))
                     {
@@ -52,7 +52,7 @@ namespace RestaurantsBooking
                     {
                         if (userInfo.User.Login.CompareTo(metroTextBox1.Text) == 0 && userInfo.User.Password.CompareTo(metroTextBox2.Text) == 0)
                         {
-                            LoggedUser = userInfo.User;
+                            DataOfUser = userInfo;
                             count++;
                         }
                     }
@@ -106,7 +106,7 @@ namespace RestaurantsBooking
                             {
                                 xml.Serialize(fs, bookedTables);
                             }
-                            var mainMenu = new MainMenu(LoggedUser, bookedTables);
+                            var mainMenu = new MainMenu(DataOfUser, bookedTables);
                             mainMenu.ShowDialog(this);
                             UsersData.Clear();
                         }
@@ -118,7 +118,7 @@ namespace RestaurantsBooking
                             {
                                 bookedTables = xmlSerializer.Deserialize(fs) as List<Restaurant>;
                             }
-                            var mainMenu = new MainMenu(LoggedUser,bookedTables);
+                            var mainMenu = new MainMenu(DataOfUser, bookedTables);
                             mainMenu.ShowDialog(this);
                             UsersData.Clear();
                         }
@@ -126,8 +126,12 @@ namespace RestaurantsBooking
                     }
                     else
                     {
-                        MessageBox.Show("There is no registered user");
+                        MessageBox.Show("There is no such registered user");
                     }
+                }
+                else
+                {
+                    MessageBox.Show("There is no registered users");
                 }
             }
             else

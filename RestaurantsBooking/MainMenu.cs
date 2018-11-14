@@ -14,12 +14,12 @@ namespace RestaurantsBooking
     public partial class MainMenu : MetroForm
     {
         public List<Restaurant> TablesBooked { get; set; } = new List<Restaurant>();
-        public User CurrentUser { get; set; } = new User();
+        public UsersData CurrentUser { get; set; } =new UsersData();
         public MainMenu()
         {
             InitializeComponent();
         }
-        public MainMenu(User loggedUser,List<Restaurant> bookedTables)
+        public MainMenu(UsersData loggedUser,List<Restaurant> bookedTables)
         {
             CurrentUser = loggedUser;
             TablesBooked = bookedTables;
@@ -33,9 +33,25 @@ namespace RestaurantsBooking
 
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            foreach (var user in TablesBooked)
+            string bookedInfoStr = String.Empty;
+            if (CurrentUser.TablesBooked.Count != 0)
             {
-               
+                foreach (var booked in CurrentUser.TablesBooked)
+                {
+                    bookedInfoStr += "Restaurant: " + booked.Title;
+                    foreach (var item in booked.AreTablesBooked)
+                    {
+                        if(item)
+                        {
+                            bookedInfoStr += "Table №" + booked.AreTablesBooked.ToList().IndexOf(item)+1;
+                        }
+                    }
+                }
+                MessageBox.Show(bookedInfoStr);
+            }
+            else
+            {
+                MessageBox.Show("You have no booked tables");
             }
         }
     }
