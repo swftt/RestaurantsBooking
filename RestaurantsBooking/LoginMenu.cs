@@ -148,5 +148,10 @@ namespace RestaurantsBooking
                 webInfo.ShowDialog();
             }
         }
+
+        private void LoginMenu_Load(object sender, EventArgs e)
+        {
+            toolStripStatusLabel1.Text ="Current date:"+DateTime.Now.ToString();
+        }
     }
 }
